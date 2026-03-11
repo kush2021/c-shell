@@ -15,16 +15,19 @@ jobs:
         run: sudo apt-get install -y cppcheck
       - name: Run cppcheck
         run: cppcheck --error-exitcode=1 --enable=warning,performance,portability .
-
   clang-format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install clang-format
-        run: sudo apt-get install -y clang-format
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 19
+          sudo apt-get install -y clang-format-19
       - name: Run clang-format
         run: |
-          find . -name "*.[ch]" | xargs clang-format --dry-run --Werror
+          find . -name "*.[ch]" | xargs clang-format-19 --dry-run --Werror
 
   clang-tidy:
     runs-on: ubuntu-latest
