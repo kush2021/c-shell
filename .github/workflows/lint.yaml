@@ -34,7 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install clang-tidy
-        run: sudo apt-get install -y clang-tidy
+        run: sudo apt-get install -y clang-tidy bear
+      - name: Generate Compile Commands
+        run: bear -- make
       - name: Run clang-tidy
         run: |
           if [ ! -f compile_commands.json ]; then
