@@ -12,7 +12,7 @@ Checks: >
 
 WarningsAsErrors: "*"
 
-HeaderFilterRegex: "^src/"
+HeaderFilterRegex: '(^|.*/)src/'
 
 CheckOptions:
   - key: readability-braces-around-statements.ShortStatementLines
