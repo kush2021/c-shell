@@ -2,7 +2,7 @@
 
 # Runs the Test Suite
 #
-# Discovers and runs all test scripts (*.sh) under the tests/ directory.
+# Discovers and runs all test scripts (*.sh) under the test/ directory (the directory containing this script).
 # Prints a final summary of results.
 
 TESTS_DIR="$(cd "$(dirname "$0")" && pwd)"
