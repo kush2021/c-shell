@@ -21,9 +21,11 @@ RELEASE_FLAGS = -std=c17 -Wall -Wextra -O2
 all: $(TARGET)
 
 $(TARGET): $(SRC)
+	mkdir -p $(dir $(TARGET))
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
 
 release:
+	mkdir -p $(dir $(TARGET))
 	$(CC) $(RELEASE_FLAGS) -o $(TARGET) $(SRC)
 
 run: $(TARGET)
