@@ -39,7 +39,7 @@ total=$((passed + failed))
 printf "\n%d/%d tests passed" "$passed" "$total"
 
 if [ "$failed" -gt 0 ]; then
-  printf "(%d failed)\n" "$failed"
+  printf " (%d failed)\n" "$failed"
   exit 1
 fi
 
