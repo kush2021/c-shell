@@ -14,7 +14,7 @@ int main(void) {
   while (true) {
     if (isatty(STDIN_FILENO)) {
       printf("%s", PROMPT);
-      fflush(stdin);
+      fflush(stdout);
     }
 
     if (fgets(input, MAX_LINE_LENGTH, stdin) == NULL) {
