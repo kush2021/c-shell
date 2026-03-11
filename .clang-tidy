@@ -1,0 +1,21 @@
+---
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  bugprone-*,
+  cert-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -readability-magic-numbers,
+  -readability-identifier-length
+
+WarningsAsErrors: "*"
+
+HeaderFilterRegex: '(^|.*/)src/'
+
+CheckOptions:
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: "0"
+  - key: cert-err33-c.CheckedFunctions
+    value: "malloc;calloc;realloc"
