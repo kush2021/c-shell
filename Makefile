@@ -37,4 +37,7 @@ test: $(TARGET)
 clean:
 	rm -rf ./build/*
 
-.PHONY: all release run test clean
+compile_commands:
+	bear --output compile_commands.json -- make
+
+.PHONY: all release run test clean compile_commands
