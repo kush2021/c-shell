@@ -36,7 +36,7 @@ jobs:
       - name: Install clang-tidy
         run: sudo apt-get install -y clang-tidy bear
       - name: Generate Compile Commands
-        run: bear -- make
+        run: bear -- make CC=clang CFLAGS="-std=c17 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wunreachable-code"
       - name: Run clang-tidy
         run: |
           if [ ! -f compile_commands.json ]; then
