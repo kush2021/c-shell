@@ -1,13 +1,24 @@
 // Copyright (c) 2026 Kush Padalia. All Rights Reserved.
 
+// -- Libraries and Headers ----------------------------------------------------
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-#define MAX_LINE_LENGTH 4096
+#include "../include/parser.h"
+
+// -- Constants ----------------------------------------------------------------
 #define PROMPT "csh> "
 
+// -- Functions ----------------------------------------------------------------
+
+/**
+ * @brief Entrypoint for the C Shell.
+ *
+ * @return {@code EXIT_SUCCESS} on successful termination, {@code EXIT_FAILURE}
+ * otherwise.
+ */
 int main(void) {
   char input[MAX_LINE_LENGTH];
 
