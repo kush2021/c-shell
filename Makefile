@@ -1,11 +1,11 @@
 # Copyright (c) 2026 Kush Padalia. All Rights Reserved.
 
 CC = clang
-SRC = src/main.c
+SRC = src/main.c src/parser.c
 TARGET = build/csh
 
 # Debug Build
-CFLAGS = -std=c17 \
+CFLAGS = -std=c23 \
 				 -Wall \
 				 -Wextra \
 				 -Wpedantic \
@@ -16,7 +16,7 @@ CFLAGS = -std=c17 \
 				 -Og \
 				 -fsanitize=address,undefined
 
-RELEASE_FLAGS = -std=c17 -Wall -Wextra -O2
+RELEASE_FLAGS = -std=c23 -Wall -Wextra -O2
 
 all: $(TARGET)
 
