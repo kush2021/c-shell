@@ -1,0 +1,38 @@
+CompileFlags:
+  Add: [
+    -std=c23,
+    -Wall,
+    -Wextra,
+    -Wpedantic,
+    -Werror,
+    -Wshadow,
+    -Wunreachable-code,
+    -g,
+    -Og,
+    -fsanitize=address,undefined
+  ]
+
+Diagnostics:
+  UnusedIncludes: Strict
+  
+  ClangTidy:
+    Add: [
+      bugprone-*,
+      performance-*,
+      modernize-*,
+    ]
+    Remove: [
+      modernize-use-trailing-return-type
+    ]
+
+  Suppress: [
+    dangling-else,
+    bool-conversion,
+    int-in-bool-context
+  ]
+
+InlayHints:
+  Designators: true
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true

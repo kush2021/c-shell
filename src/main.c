@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include "../include/parser.h"
@@ -23,6 +24,7 @@ int main(void) {
   char input[MAX_LINE_LENGTH];
 
   while (true) {
+    /* Prompt only when stdin is a terminal (§1.1). */
     if (isatty(STDIN_FILENO)) {
       printf("%s", PROMPT);
       fflush(stdout);
@@ -33,9 +35,28 @@ int main(void) {
         perror("csh: read error");
         return EXIT_FAILURE;
       }
-
+      /* EOF (Ctrl-D) — exit gracefully. */
       break;
     }
+
+    /* Strip the trailing newline fgets leaves in the buffer. */
+    input[strcspn(input, "\n")] = '\0';
+
+    /* Parse the input line into a pipeline. */
+    struct pipeline pipeline;
+    const char *errmsg = nullptr;
+
+    if (parse_line(input, &pipeline, &errmsg) == -1) {
+      fprintf(stderr, "csh: %s\n", errmsg);
+      continue;
+    }
+
+    /* Blank lines and comments produce an empty pipeline — skip silently. */
+    if (pipeline.count == 0) continue;
+
+    /* TODO: execute the pipeline. */
+
+    pipeline_free(&pipeline);
   }
 
   return EXIT_SUCCESS;
