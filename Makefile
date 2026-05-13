@@ -1,32 +1,46 @@
 # Copyright (c) 2026 Kush Padalia. All Rights Reserved.
 
 CC = clang
-SRC = src/main.c src/parser.c
+
 TARGET = build/csh
 
-# Debug Build
-CFLAGS = -std=c23 \
-				 -Wall \
-				 -Wextra \
-				 -Wpedantic \
-				 -Werror \
-				 -Wshadow \
-				 -Wunreachable-code \
-				 -g \
-				 -Og \
-				 -fsanitize=address,undefined
+SRC = $(wildcard src/*.c)
 
-RELEASE_FLAGS = -std=c23 -Wall -Wextra -O2
+OBJ = $(SRC:src/%.c=build/%.o)
+DEP = $(OBJ:.o=.d)
+
+CFLAGS = -std=c23 \
+         -Wall \
+         -Wextra \
+         -Wpedantic \
+         -Werror \
+         -Wshadow \
+         -Wunreachable-code \
+         -g \
+         -Og \
+         -fsanitize=address,undefined \
+         -MMD \
+         -MP
+
+RELEASE_FLAGS = -std=c23 \
+                -Wall \
+                -Wextra \
+                -O2 \
+                -MMD \
+                -MP
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
+$(TARGET): $(OBJ)
 	mkdir -p $(dir $(TARGET))
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
 
-release:
-	mkdir -p $(dir $(TARGET))
-	$(CC) $(RELEASE_FLAGS) -o $(TARGET) $(SRC)
+build/%.o: src/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+release: CFLAGS = $(RELEASE_FLAGS)
+release: clean $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
@@ -35,9 +49,12 @@ test: $(TARGET)
 	./test/run_tests.sh
 
 clean:
-	rm -rf ./build/*
+	rm -rf build
 
 compile_commands:
 	bear --output compile_commands.json -- $(MAKE) all
 
+-include $(DEP)
+
 .PHONY: all release run test clean compile_commands
+
