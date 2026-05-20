@@ -22,7 +22,8 @@ Diagnostics:
       modernize-*,
     ]
     Remove: [
-      modernize-use-trailing-return-type
+      modernize-use-trailing-return-type,
+      bugprone-multi-level-implicit-pointer-conversion
     ]
 
   Suppress: [

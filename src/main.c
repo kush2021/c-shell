@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "../include/executor.h"
 #include "../include/parser.h"
 
 // -- Constants ----------------------------------------------------------------
@@ -54,7 +55,7 @@ int main(void) {
     /* Blank lines and comments produce an empty pipeline — skip silently. */
     if (pipeline.count == 0) continue;
 
-    /* TODO: execute the pipeline. */
+    execute(&pipeline);
 
     pipeline_free(&pipeline);
   }
