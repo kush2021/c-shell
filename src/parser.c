@@ -222,7 +222,7 @@ static char *read_word(const char *line, int *pos, const char **errmsg) {
     }
 
     /* Stop at an unquoted metacharacter; next_token will handle it. */
-    if (isspace((unsigned char)c) || c == '|' || c == '<' || c == '>' ||
+    if (isspace((unsigned char) c) || c == '|' || c == '<' || c == '>' ||
         c == '&' || c == '#') {
       break;
     }
@@ -257,7 +257,7 @@ static token next_token(const char *line, int *pos, const char **errmsg) {
   token tok = {TOK_EOF, nullptr};
 
   /* Skip horizontal whitespace. */
-  while (line[*pos] != '\0' && isspace((unsigned char)line[*pos])) {
+  while (line[*pos] != '\0' && isspace((unsigned char) line[*pos])) {
     (*pos)++;
   }
 
@@ -358,13 +358,13 @@ int parse_line(const char *line, struct pipeline *out, const char **errmsg) {
    * (count == 0). This is not an error — the REPL should simply continue.
    */
   int pos = 0;
-  while (isspace((unsigned char)line[pos])) pos++;
+  while (isspace((unsigned char) line[pos])) pos++;
   if (line[pos] == '\0' || line[pos] == '#') return 0;
 
   /* Allocate the initial commands array. It grows on demand as pipes are
      encountered. calloc() zeroes all slots, which is relied upon below. */
   int cmd_cap = 4;
-  out->commands = calloc((size_t)cmd_cap, sizeof(struct command));
+  out->commands = calloc((size_t) cmd_cap, sizeof(struct command));
   if (!out->commands) {
     *errmsg = "out of memory";
     return -1;
@@ -373,7 +373,7 @@ int parse_line(const char *line, struct pipeline *out, const char **errmsg) {
 
   /* Allocate argv for the first command. MAX_ARGS + 1 gives room for the
      mandatory NULL sentinel at argv[argc]. */
-  out->commands[0].argv = (char **)calloc(MAX_ARGS + 1, sizeof(char *));
+  out->commands[0].argv = (char **) calloc(MAX_ARGS + 1, sizeof(char *));
   if (!out->commands[0].argv) {
     *errmsg = "out of memory";
     goto fail;
@@ -408,18 +408,18 @@ int parse_line(const char *line, struct pipeline *out, const char **errmsg) {
         /* Double the capacity and zero the new slots. */
         int new_cap = cmd_cap * 2;
         struct command *tmp =
-            realloc(out->commands, (size_t)new_cap * sizeof(struct command));
+            realloc(out->commands, (size_t) new_cap * sizeof(struct command));
         if (!tmp) {
           *errmsg = "out of memory";
           goto fail;
         }
         out->commands = tmp;
         memset(&out->commands[ci], 0,
-               (size_t)(new_cap - ci) * sizeof(struct command));
+               (size_t) (new_cap - ci) * sizeof(struct command));
         cmd_cap = new_cap;
       }
       out->count = ci + 1;
-      out->commands[ci].argv = (char **)calloc(MAX_ARGS + 1, sizeof(char *));
+      out->commands[ci].argv = (char **) calloc(MAX_ARGS + 1, sizeof(char *));
       if (!out->commands[ci].argv) {
         *errmsg = "out of memory";
         goto fail;
@@ -509,7 +509,7 @@ void pipeline_free(struct pipeline *p) {
       for (int j = 0; j < cmd->argc; j++) {
         free(cmd->argv[j]);
       }
-      free((void *)cmd->argv);
+      free((void *) cmd->argv);
     }
     free(cmd->redir_in);
     free(cmd->redir_out);

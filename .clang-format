@@ -4,3 +4,5 @@ BasedOnStyle: Google
 IndentWidth: 2
 ColumnLimit: 80
 PointerAlignment: Right
+SpaceAfterCStyleCast: true
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
