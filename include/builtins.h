@@ -3,6 +3,9 @@
 #ifndef BUILTINS_H
 #define BUILTINS_H
 
+// -- Libraries and Headers ----------------------------------------------------
+#include "context.h"
+
 // -- Types --------------------------------------------------------------------
 
 /**
@@ -12,7 +15,7 @@
  * can be used to represent an arbitrary command. This will be used within a
  * dispatch table to streamline built-in commands and future scalability.
  */
-typedef int (*builtin_fn)(int argc, char **argv);
+typedef int (*builtin_fn)(int argc, char **argv, struct shell_ctx *ctx);
 
 /**
  * @brief Represents a single entry in the dispatch table.
@@ -26,5 +29,21 @@ struct builtin_entry {
  * @brief The dispatch table. Guaranteed to be null-terminated.
  */
 extern const struct builtin_entry builtins[];
+
+// -- Function Declarations ----------------------------------------------------
+
+/**
+ * @brief Exit the shell.
+ *
+ * Usage: `exit [STATUS]`
+ *
+ * Terminates the current shell. If `STATUS` is not provided, exits with the
+ * status of the last command. `STATUS` must be a non-negative integer.
+ *
+ * @param argc The number of arguments. At most two.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ */
+int builtin_exit(int argc, char **argv, struct shell_ctx *ctx);
 
 #endif  // BUILTINS_H

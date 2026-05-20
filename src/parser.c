@@ -254,7 +254,7 @@ oom:
  *   &>  is recognised before a lone &.
  */
 static token next_token(const char *line, int *pos, const char **errmsg) {
-  token tok = {TOK_EOF, nullptr};
+  token tok = { TOK_EOF, nullptr };
 
   /* Skip horizontal whitespace. */
   while (line[*pos] != '\0' && isspace((unsigned char) line[*pos])) {
@@ -333,7 +333,9 @@ static token next_token(const char *line, int *pos, const char **errmsg) {
  * *filename receives a heap-allocated string the caller must free. On failure,
  * sets *errmsg and returns false.
  */
-static bool expect_filename(const char *line, int *pos, char **filename,
+static bool expect_filename(const char *line,
+                            int *pos,
+                            char **filename,
                             const char **errmsg) {
   token fn = next_token(line, pos, errmsg);
   if (fn.type == TOK_WORD) {
@@ -414,7 +416,8 @@ int parse_line(const char *line, struct pipeline *out, const char **errmsg) {
           goto fail;
         }
         out->commands = tmp;
-        memset(&out->commands[ci], 0,
+        memset(&out->commands[ci],
+               0,
                (size_t) (new_cap - ci) * sizeof(struct command));
         cmd_cap = new_cap;
       }

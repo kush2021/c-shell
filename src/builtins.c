@@ -2,4 +2,7 @@
 
 #include "../include/builtins.h"
 
-const struct builtin_entry builtins[] = {{nullptr, nullptr}};
+const struct builtin_entry builtins[] = {
+  { "exit",  builtin_exit },
+  { nullptr, nullptr      }
+};

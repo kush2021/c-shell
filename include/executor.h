@@ -4,6 +4,7 @@
 #define EXECUTOR_H
 
 // -- Libraries and Headers ----------------------------------------------------
+#include "context.h"
 #include "parser.h"
 
 // -- Function Declarations ----------------------------------------------------
@@ -16,7 +17,9 @@
  * are executed without forking.
  *
  * @param p The pipeline to execute.
+ * @param ctx The global context.
+ * @return The exit status.
  */
-void execute(struct pipeline *p);
+int execute(struct pipeline *p, struct shell_ctx *ctx);
 
 #endif  // EXECUTOR_H

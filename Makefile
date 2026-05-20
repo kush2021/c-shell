@@ -4,7 +4,7 @@ CC = clang
 
 TARGET = build/csh
 
-SRC = $(wildcard src/*.c)
+SRC = $(shell find src -name '*.c')
 
 OBJ = $(SRC:src/%.c=build/%.o)
 DEP = $(OBJ:.o=.d)

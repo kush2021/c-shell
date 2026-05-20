@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "../include/context.h"
 #include "../include/executor.h"
 #include "../include/parser.h"
 
@@ -23,6 +24,9 @@
  */
 int main(void) {
   char input[MAX_LINE_LENGTH];
+
+  struct shell_ctx *ctx = malloc(sizeof(*ctx));
+  ctx->last_status = 0;
 
   while (true) {
     /* Prompt only when stdin is a terminal (§1.1). */
@@ -55,10 +59,13 @@ int main(void) {
     /* Blank lines and comments produce an empty pipeline — skip silently. */
     if (pipeline.count == 0) continue;
 
-    execute(&pipeline);
+    ctx->last_status = execute(&pipeline, ctx);
 
     pipeline_free(&pipeline);
   }
 
-  return EXIT_SUCCESS;
+  const int status = ctx->last_status;
+  free(ctx);
+
+  return status;
 }
