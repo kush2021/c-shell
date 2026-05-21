@@ -65,4 +65,17 @@ int builtin_exit(int argc, char **argv, struct shell_ctx *ctx);
  */
 int builtin_cd(int argc, char **argv, struct shell_ctx *ctx);
 
+/**
+ * @brief Print the absolute working directory.
+ *
+ * Usage: `pwd`
+ *
+ * @param argc The number of arguments. Should be one.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ *
+ * @return The command status.
+ */
+int builtin_pwd(int argc, char **argv, struct shell_ctx *ctx);
+
 #endif  // BUILTINS_H

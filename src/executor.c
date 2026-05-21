@@ -12,6 +12,7 @@
 #include "../include/builtins.h"
 #include "../include/context.h"
 #include "../include/parser.h"
+#include "../include/utils.h"
 
 static int execute_command(struct command *c, struct shell_ctx *ctx) {
   if (!c->argc) return -1;
@@ -37,13 +38,11 @@ static int execute_command(struct command *c, struct shell_ctx *ctx) {
 
   execvp(c->argv[0], c->argv);
   fprintf(stderr, "csh: unexpected error: %s\n", strerror(errno));
-  return -1;
+  _exit(127);
 }
 
 int execute(struct pipeline *p, struct shell_ctx *ctx) {
-  int last_status = 0;
-  for (int i = 0; i < p->count; ++i) {
-    last_status = execute_command(&p->commands[i], ctx);
-  }
-  return last_status;
+  if (!p->count) return CSH_SUCCESS;
+
+  return execute_command(&p->commands[0], ctx);
 }

@@ -1,0 +1,116 @@
+{
+  event = "msg_showcmd",
+  kind = {}
+}
+{
+  event = "msg_showcmd",
+  kind = { { 0, ":", 0 } }
+}
+{ 0, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "", 0 } }
+}
+{ 1, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "N", 0 } }
+}
+{ 2, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "No", 0 } }
+}
+{ 3, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noi", 0 } }
+}
+{ 4, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noic", 0 } }
+}
+{ 5, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice", 0 } }
+}
+{ 6, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice ", 0 } }
+}
+{ 7, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice l", 0 } }
+}
+{ 8, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice la", 0 } }
+}
+{ 9, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice las", 0 } }
+}
+{ 10, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice last", 0 } }
+}
+{ false,
+  event = "cmdline_hide",
+  kind = 1
+}
+{
+  event = "msg_showcmd",
+  kind = {}
+}
+{
+  event = "msg_showcmd",
+  kind = { { 0, ":", 0 } }
+}
+{ 0, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "", 0 } }
+}
+{ 1, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "N", 0 } }
+}
+{ 2, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "No", 0 } }
+}
+{ 3, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noi", 0 } }
+}
+{ 4, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noic", 0 } }
+}
+{ 5, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice", 0 } }
+}
+{ 6, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice ", 0 } }
+}
+{ 7, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice d", 0 } }
+}
+{ 8, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice de", 0 } }
+}
+{ 9, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice deb", 0 } }
+}
+{ 10, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice debu", 0 } }
+}
+{ 11, ":", "", 0, 1, 0,
+  event = "cmdline_show",
+  kind = { { 0, "Noice debug", 0 } }
+}
+{ false,
+  event = "cmdline_hide",
+  kind = 1
+}
