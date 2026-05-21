@@ -78,4 +78,18 @@ int builtin_cd(int argc, char **argv, struct shell_ctx *ctx);
  */
 int builtin_pwd(int argc, char **argv, struct shell_ctx *ctx);
 
+/**
+ * @brief Print the provided arguments followed by a newline. If the `n` flag is
+ * provided, the newline will be suppressed.
+ *
+ * Usage: `echo [-n] [args...]`
+ *
+ * @param argc The number of arguments. Must be at least one.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ *
+ * @return The command status.
+ */
+int builtin_echo(int argc, char **argv, struct shell_ctx *ctx);
+
 #endif  // BUILTINS_H

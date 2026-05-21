@@ -6,5 +6,6 @@ const struct builtin_entry builtins[] = {
   { "exit",  builtin_exit },
   { "cd",    builtin_cd   },
   { "pwd",   builtin_pwd  },
+  { "echo",  builtin_echo },
   { nullptr, nullptr      }
 };
