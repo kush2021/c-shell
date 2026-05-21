@@ -35,15 +35,34 @@ extern const struct builtin_entry builtins[];
 /**
  * @brief Exit the shell.
  *
- * Usage: `exit [STATUS]`
+ * Usage: `exit [status]`
  *
- * Terminates the current shell. If `STATUS` is not provided, exits with the
- * status of the last command. `STATUS` must be a non-negative integer.
+ * Terminates the current shell. If `status` is not provided, exits with the
+ * status of the last command. `status` must be a non-negative integer.
  *
  * @param argc The number of arguments. At most two.
  * @param argv The null-terminated argument array.
  * @param ctx The global shell context.
+ *
+ * @return The command status.
  */
 int builtin_exit(int argc, char **argv, struct shell_ctx *ctx);
+
+/**
+ * @brief Change the current directory.
+ *
+ * Usage: `cd [dir]`
+ *
+ * Changes the current directory to the path provided by `dir`. If `dir` is
+ * omitted, it changes to `$HOME`. If `dir` is an invalid path, a corresponding
+ * error will print and no change will occur.
+ *
+ * @param argc The number of arguments. At most two.
+ * @param argv The null-terminated argument array.
+ * @param ctx the global shell context.
+ *
+ * @return The command status.
+ */
+int builtin_cd(int argc, char **argv, struct shell_ctx *ctx);
 
 #endif  // BUILTINS_H

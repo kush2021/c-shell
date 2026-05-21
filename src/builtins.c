@@ -4,5 +4,6 @@
 
 const struct builtin_entry builtins[] = {
   { "exit",  builtin_exit },
+  { "cd",    builtin_cd   },
   { nullptr, nullptr      }
 };

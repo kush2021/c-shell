@@ -10,9 +10,10 @@
 #include "../include/context.h"
 #include "../include/executor.h"
 #include "../include/parser.h"
+#include "../include/utils.h"
 
 // -- Constants ----------------------------------------------------------------
-#define PROMPT "csh> "
+#define PROMPT "csh %s> "
 
 // -- Functions ----------------------------------------------------------------
 
@@ -24,6 +25,7 @@
  */
 int main(void) {
   char input[MAX_LINE_LENGTH];
+  char cwd[256];
 
   struct shell_ctx *ctx = malloc(sizeof(*ctx));
   ctx->last_status = 0;
@@ -31,7 +33,8 @@ int main(void) {
   while (true) {
     /* Prompt only when stdin is a terminal (§1.1). */
     if (isatty(STDIN_FILENO)) {
-      printf("%s", PROMPT);
+      get_cwd(cwd, sizeof(cwd));
+      fprintf(stdout, PROMPT, cwd);
       fflush(stdout);
     }
 

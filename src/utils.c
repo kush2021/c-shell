@@ -5,7 +5,11 @@
 
 #include <errno.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/syslimits.h>
+#include <unistd.h>
 
 bool is_integer(const char *s, int64_t *out) {
   if (!s || !*s) return false;
@@ -20,4 +24,22 @@ bool is_integer(const char *s, int64_t *out) {
 
   *out = val;
   return true;
+}
+
+int get_cwd(char *buf, size_t size) {
+  char cwd[PATH_MAX];
+  if (!getcwd(cwd, sizeof(cwd))) {
+    fprintf(stderr, "fatal: csh: could not get current working directory");
+    exit(EXIT_FAILURE);
+  }
+
+  const char *name;
+  if (cwd[0] == '/' && cwd[1] == '\0') name = "/";
+  else {
+    char *last_slash = strrchr(cwd, '/');
+    name = last_slash ? last_slash + 1 : cwd;
+  }
+
+  if (snprintf(buf, size, "%s", name) >= (int) size) return -1;
+  return 0;
 }

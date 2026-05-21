@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Kush Padalia. All Rights Reserved.
 
 // -- Libraries and Headers ----------------------------------------------------
+#include <stddef.h>
 #include <stdint.h>
 
 // -- Constants ----------------------------------------------------------------
@@ -19,3 +20,15 @@
  * @return Whether the string represents an integer.
  */
 bool is_integer(const char *s, int64_t *out);
+
+/**
+ * @brief Get the current working directory.
+ *
+ * This only returns the topmost directory name without the full path.
+ *
+ * @param buf The output buffer.
+ * @size The output size.
+ *
+ * @return The success status.
+ */
+int get_cwd(char *buf, size_t size);
