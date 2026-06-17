@@ -92,4 +92,18 @@ int builtin_pwd(int argc, char **argv, struct shell_ctx *ctx);
  */
 int builtin_echo(int argc, char **argv, struct shell_ctx *ctx);
 
+/**
+ * @brief Set an environment variable visible to child processes. Can also
+ * export a previously set shell variable without a value.
+ *
+ * Usage: `export NAME[=VALUE]`
+ *
+ * @param argc The number of arguments. Must be two.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ *
+ * @return The command status.
+ */
+int builtin_export(int argc, char **argv, struct shell_ctx *ctx);
+
 #endif  // BUILTINS_H

@@ -3,9 +3,10 @@
 #include "../include/builtins.h"
 
 const struct builtin_entry builtins[] = {
-  { "exit",  builtin_exit },
-  { "cd",    builtin_cd   },
-  { "pwd",   builtin_pwd  },
-  { "echo",  builtin_echo },
-  { nullptr, nullptr      }
+  { "exit",   builtin_exit   },
+  { "cd",     builtin_cd     },
+  { "pwd",    builtin_pwd    },
+  { "echo",   builtin_echo   },
+  { "export", builtin_export },
+  { nullptr,  nullptr        }
 };
