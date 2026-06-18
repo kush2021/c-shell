@@ -106,4 +106,17 @@ int builtin_echo(int argc, char **argv, struct shell_ctx *ctx);
  */
 int builtin_export(int argc, char **argv, struct shell_ctx *ctx);
 
+/**
+ * @brief Remove an environment variable.
+ *
+ * Usage: `unset NAME`
+ *
+ * @param argc The number of arguments. Must be two.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ *
+ * @return The command status.
+ */
+int builtin_unset(int argc, char **argv, struct shell_ctx *ctx);
+
 #endif  // BUILTINS_H

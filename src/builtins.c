@@ -8,5 +8,6 @@ const struct builtin_entry builtins[] = {
   { "pwd",    builtin_pwd    },
   { "echo",   builtin_echo   },
   { "export", builtin_export },
+  { "unset",  builtin_unset  },
   { nullptr,  nullptr        }
 };

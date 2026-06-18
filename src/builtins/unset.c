@@ -9,9 +9,7 @@
 #include "../../include/context.h"
 #include "../../include/utils.h"
 
-// TODO: Support local environment variables and export NAME.
-// Do as part of variable expansion.
-int builtin_export(int argc, char **argv, struct shell_ctx *ctx) {
+int builtin_unset(int argc, char **argv, struct shell_ctx *ctx) {
   (void) ctx;
 
   if (argc < 2) {
@@ -24,21 +22,10 @@ int builtin_export(int argc, char **argv, struct shell_ctx *ctx) {
     return CSH_ERROR_MISUSE;
   }
 
-  char *sep = strchr(argv[1], '=');
-  if (!sep) {
-    fprintf(stderr,
-            "csh: %s: argument must be of the form NAME=VALUE\n",
-            argv[0]);
-    return CSH_ERROR_MISUSE;
-  }
-
-  *sep = '\0';
-  if (setenv(argv[1], sep + 1, true) != 0) {
-    *sep = '=';
+  if (unsetenv(argv[1]) != 0) {
     fprintf(stderr, "csh: %s: %s\n", argv[0], strerror(errno));
     return CSH_ERROR;
   }
-  *sep = '=';
 
   return CSH_SUCCESS;
 }
