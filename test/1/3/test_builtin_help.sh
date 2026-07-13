@@ -63,18 +63,18 @@ echo "$OUT" | grep -q "pwd" || fail "assertion 6: expected 'help cd pwd' output 
 # -- Assertion 7: help with unknown name does not exit the shell -------------
 
 run "help not_a_real_builtin_xyz"
-[ "$STATUS" -eq 0 ] || fail "assertion 8: shell should not exit on unknown 'help' argument, got status: $STATUS"
+[ "$STATUS" -eq 0 ] || fail "assertion 7: shell should not exit on unknown 'help' argument, got status: $STATUS"
 
 # -- Assertion 8: help output is non-empty ------------------------------------
 
 run "help"
-[ -n "$OUT" ] || fail "assertion 9: expected non-empty output for bare 'help', got nothing"
+[ -n "$OUT" ] || fail "assertion 8: expected non-empty output for bare 'help', got nothing"
 
 # -- Assertion 9: shell continues after help -------------------------------
 # Confirms 'help' does not consume or corrupt subsequent input processing.
 
 OUT=$(printf "help\necho still_running\n" | "$BINARY" 2>/dev/null)
-echo "$OUT" | grep -q "still_running" || fail "assertion 10: expected shell to continue after 'help', got: '$OUT'"
+echo "$OUT" | grep -q "still_running" || fail "assertion 9: expected shell to continue after 'help', got: '$OUT'"
 
 # -- Cleanup ------------------------------------------------------------------
 

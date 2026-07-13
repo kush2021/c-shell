@@ -1,5 +1,8 @@
 // Copyright (c) 2026 Kush Padalia. All Rights Reserved.
 
+#ifndef UTILS_H
+#define UTILS_H
+
 // -- Libraries and Headers ----------------------------------------------------
 #include <stddef.h>
 #include <stdint.h>
@@ -27,8 +30,10 @@ bool is_integer(const char *s, int64_t *out);
  * This only returns the topmost directory name without the full path.
  *
  * @param buf The output buffer.
- * @size The output size.
+ * @param The output size.
  *
  * @return The success status.
  */
 int get_cwd(char *buf, size_t size);
+
+#endif /* UTILS_H */

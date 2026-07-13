@@ -29,7 +29,7 @@ bool is_integer(const char *s, int64_t *out) {
 int get_cwd(char *buf, size_t size) {
   char cwd[PATH_MAX];
   if (!getcwd(cwd, sizeof(cwd))) {
-    fprintf(stderr, "fatal: csh: could not get current working directory");
+    fprintf(stderr, "fatal: csh: could not get current working directory\n");
     exit(EXIT_FAILURE);
   }
 

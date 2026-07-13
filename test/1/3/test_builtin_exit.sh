@@ -46,7 +46,6 @@ run "exit 255"
 # -- Assertion 5: exit inherits last command status ---------------------------
 # A bare exit after a failed command should exit with that command's status.
 
-STATUS=$(printf "exit_status_test_bad_command_xyz\nexit\n" | "$BINARY" 2>/dev/null; echo $?)
 printf "exit_status_test_bad_command_xyz\nexit\n" | "$BINARY" 2>/dev/null
 STATUS=$?
 [ "$STATUS" -ne 0 ] || fail "assertion 5: expected non-zero exit after failed command + bare exit, got: $STATUS"

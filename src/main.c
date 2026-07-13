@@ -28,6 +28,10 @@ int main(void) {
   char cwd[256];
 
   struct shell_ctx *ctx = malloc(sizeof(*ctx));
+  if (!ctx) {
+    perror("csh: out of memory");
+    return EXIT_FAILURE;
+  }
   ctx->last_status = 0;
 
   while (true) {

@@ -49,7 +49,7 @@ const struct builtin_entry builtins[] = {
     "help",
     builtin_help,
     "help [name...] - Display information about built-in commands.\n"
-    "    With no arguments. lists all built-ins. With one or more NAMEs,\n"
+    "    With no arguments, lists all built-ins. With one or more NAMEs,\n"
     "    shows detailed help for just those commands."
   },
   { nullptr, nullptr, nullptr }

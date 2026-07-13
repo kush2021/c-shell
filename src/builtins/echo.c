@@ -18,18 +18,17 @@ int builtin_echo(int argc, char **argv, struct shell_ctx *ctx) {
 
   bool nl = true;
   int i = 1;
-  if (strcmp(argv[1], "-n") == 0) {
+  if (argc > 1 && strcmp(argv[1], "-n") == 0) {
     nl = false;
     i = 2;
   }
 
-  while (argv[i + 1]) {
-    fprintf(stdout, "%s ", argv[i]);
-    ++i;
+  for (int arg = i; arg < argc; ++arg) {
+    if (arg > i) fputc(' ', stdout);
+    fputs(argv[arg], stdout);
   }
-  fprintf(stdout, "%s", argv[i]);
 
-  if (nl) putchar('\n');
+  if (nl) fputc('\n', stdout);
 
   return CSH_SUCCESS;
 }
