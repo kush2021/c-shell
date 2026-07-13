@@ -9,7 +9,8 @@ SRC = $(shell find src -name '*.c')
 OBJ = $(SRC:src/%.c=build/%.o)
 DEP = $(OBJ:.o=.d)
 
-CFLAGS = -std=c23 \
+CFLAGS = -D_POSIX_C_SOURCE=200809L \
+				 -std=c23 \
          -Wall \
          -Wextra \
          -Wpedantic \
@@ -22,7 +23,8 @@ CFLAGS = -std=c23 \
          -MMD \
          -MP
 
-RELEASE_FLAGS = -std=c23 \
+RELEASE_FLAGS = -D_POSIX_C_SOURCE=200809L \
+								-std=c23 \
                 -Wall \
                 -Wextra \
                 -O2 \
