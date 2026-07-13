@@ -4,6 +4,8 @@
 #define BUILTINS_H
 
 // -- Libraries and Headers ----------------------------------------------------
+#include <stddef.h>
+
 #include "context.h"
 
 // -- Types --------------------------------------------------------------------
@@ -23,12 +25,14 @@ typedef int (*builtin_fn)(int argc, char **argv, struct shell_ctx *ctx);
 struct builtin_entry {
   const char *name; /**< The name of the built-in command. */
   builtin_fn fn;    /**< The corresponding built-in function. */
+  const char *help; /**< The help message for this built-in command. */
 };
 
 /**
  * @brief The dispatch table. Guaranteed to be null-terminated.
  */
 extern const struct builtin_entry builtins[];
+extern const size_t builtins_count;
 
 // -- Function Declarations ----------------------------------------------------
 
@@ -118,5 +122,16 @@ int builtin_export(int argc, char **argv, struct shell_ctx *ctx);
  * @return The command status.
  */
 int builtin_unset(int argc, char **argv, struct shell_ctx *ctx);
+
+/**
+ * @brief Prints the help message.
+ *
+ * Usage: `help [name...]`
+ *
+ * @param argc The number of arguments. Must be at least one.
+ * @param argv The null-terminated argument array.
+ * @param ctx The global shell context.
+ */
+int builtin_help(int argc, char **argv, struct shell_ctx *ctx);
 
 #endif  // BUILTINS_H
