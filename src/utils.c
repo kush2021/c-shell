@@ -4,11 +4,11 @@
 #include "../include/utils.h"
 
 #include <errno.h>
+#include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/syslimits.h>
 #include <unistd.h>
 
 bool is_integer(const char *s, int64_t *out) {
