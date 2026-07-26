@@ -3,12 +3,10 @@
 #include "../include/executor.h"
 
 #include <errno.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/errno.h>
-#include <sys/syslimits.h>
-#include <sys/unistd.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
